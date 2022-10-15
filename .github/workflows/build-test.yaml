@@ -1,37 +1,44 @@
 name: 🔨 Build Test
+
 on:
-  push:
-  pull_request:
-  workflow_dispatch:
+  repository_dispatch:
+    types: [trigger-build-test]
+  # push:
+  #   branches:
+  #     - '**'
+  # pull_request:
+  #   branches:
+  #     - '**'
 
 jobs:
+
   build:
     name: Test Builds
-    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macOS-latest]
+    runs-on: ${{ matrix.os }}
+
     steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.client_payload.sha }}
+
       - name: Set up Go
         uses: actions/setup-go@v3
         with:
           go-version: 1.19
 
-      - name: Check out code
-        uses: actions/checkout@v3
+      - name: Build KVStoK
+        run: go build -v ./...
+        working-directory: .
 
-      - name: Build
-        run: go build ./...
-
-      - name: Test
+      - name: Testing KVStoK
         run: go test ./...
-
-      # Todo
-      # - name: Integration Tests
-      #   env:
-      #     GH_ACTION: true
-      #   run: bash run.sh
-      #   working-directory: integration_tests/
+        working-directory: .
 
       - name: Race Condition Tests
-        run: go build -race ./...
+        if: ${{ matrix.os != 'windows-latest' }} # known issue: https://github.com/golang/go/issues/46099
+        run: go run -race . -u scanme.sh
+        working-directory: .
