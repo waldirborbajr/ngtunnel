@@ -9,9 +9,8 @@ permissions:
   contents: read
 
 jobs:
-  name: "Lint Test"
-  golangci:
-    name: lint
+  lint:
+    name: Lint Test
     runs-on: ubuntu-latest
 
     steps:
