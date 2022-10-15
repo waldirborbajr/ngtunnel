@@ -1,21 +1,29 @@
-name: golangci-lint
+name: 🙏🏻 Lint Test
+
 on:
   push:
     branches:
       - main
+
 permissions:
   contents: read
+
 jobs:
+  name: Lint Test
   golangci:
     name: lint
     runs-on: ubuntu-latest
+
     steps:
+      - uses: actions/checkout@v3
+
       - uses: actions/setup-go@v3
         with:
           go-version: 1.19
-      - uses: actions/checkout@v3
+
       - name: golangci-lint
         uses: golangci/golangci-lint-action@v3
         with:
-          version: v1.48
-          args: -c .golangci.yaml -v
+          version: latest
+          args: --timeout 5m
+          # args: -c .golangci.yaml -v
