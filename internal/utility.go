@@ -49,15 +49,15 @@ func GetngrokURL(curlPath string) {
 		fmt.Println("Error executing curl. Please verify if ngrok it is up and running.")
 		os.Exit(1)
 	}
-	output := string(out[:])
-	fmt.Println(processRegexp(output))
+	output := out[:]
+	fmt.Println(processRegexp(string(output)))
 }
 
 func processRegexp(output string) string {
 	str := ""
 
-	re, _ := regexp.Compile(`"public_url":"https://([^"]+)"`)
-	reurl, _ := regexp.Compile(`"https://([^"]+)"`)
+	re := regexp.MustCompile(`"public_url":"https://([^"]+)"`)
+	reurl := regexp.MustCompile(`"https://([^"]+)"`)
 
 	if len(re.FindStringIndex(output)) > 0 {
 		str = re.FindString(output)
@@ -74,6 +74,8 @@ func processRegexp(output string) string {
 }
 
 func StartNGRok(port string) {
+	const two = 2
+
 	devnull, err := os.OpenFile(os.DevNull, os.O_WRONLY, 0o755)
 	if err != nil {
 		panic(err)
@@ -86,5 +88,5 @@ func StartNGRok(port string) {
 		fmt.Println("Error ....")
 	}
 
-	time.Sleep(2 * time.Second)
+	time.Sleep(two * time.Second)
 }
