@@ -2,23 +2,24 @@ version: 2
 updates:
 # Maintain dependencies for GitHub Actions
 - package-ecosystem: "github-actions"
-  directory: "/"
+  directory: "/.github/workflows"
   schedule:
     interval: "weekly"
     day: "saturday"
-    time: "06:00"
+    time: "00:01"
     timezone: "America/Sao_Paulo"
   reviewers:
     - "jidicula"
   open-pull-requests-limit: 99
   commit-message:
-    prefix: "build: "
+    prefix: "workflows: "
+
 - package-ecosystem: "gomod"
   directory: "/"
   schedule:
     interval: weekly
     day: "saturday"
-    time: "06:00"
+    time: "00:01"
     timezone: "America/Sao_Paulo"
   reviewers:
     - "waldirborbajr"
