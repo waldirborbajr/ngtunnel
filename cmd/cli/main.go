@@ -5,11 +5,10 @@ import (
 	"os"
 
 	utility "localhost/ngtunnel/internal"
+	"localhost/ngtunnel/pkg/config"
 
 	color "github.com/waldirborbajr/bp-colors"
 )
-
-const Version = "0.6.1"
 
 func init() {
 	utility.CheckOS()
@@ -22,7 +21,7 @@ func main() {
 		param := os.Args
 		port = param[1]
 	} else {
-		fmt.Printf(color.Green + "NGTunnel " + Version + " - inform port number.\n\n" + color.Reset)
+		fmt.Printf(color.Green + "NGTunnel " + config.Verzion + " - inform port number.\n\n" + color.Reset)
 		fmt.Printf("Usage:\n")
 		fmt.Printf("   ngtunnel [port_number]\n\n")
 		os.Exit(0)
