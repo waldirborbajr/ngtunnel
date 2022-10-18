@@ -1,5 +1,6 @@
 # NGTunnel
 
+[![CodeQL](https://github.com/waldirborbajr/ngtunnel/actions/workflows/codeql.yml/badge.svg)](https://github.com/waldirborbajr/ngtunnel/actions/workflows/codeql.yml)
 [![Release](https://github.com/waldirborbajr/ngtunnel/actions/workflows/goreleaser.yaml/badge.svg)](https://github.com/waldirborbajr/ngtunnel/actions/workflows/goreleaser.yaml)
 
 NGTunnel it is a CLI (Command Line Interface), thats wrapp `NGrok` to start and stop and returns HTTPS.
