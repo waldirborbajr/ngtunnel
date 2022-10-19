@@ -10,12 +10,13 @@ import (
 	"time"
 )
 
-func KillNgrok() {
-	argstr := `killall ngrok`
+func KillNgrok(processName string) error {
+	argstr := `killall ` + processName
 	_, err := exec.Command("bash", "-c", argstr).Output()
 	if err != nil {
-		fmt.Println("Error killing NGRok")
+		return err
 	}
+	return nil
 }
 
 func HasNoHup() {

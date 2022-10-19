@@ -2,10 +2,11 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"os"
 
 	utility "localhost/ngtunnel/internal"
-	"localhost/ngtunnel/pkg/config"
+	cfg "localhost/ngtunnel/pkg/config"
 
 	color "github.com/waldirborbajr/bp-colors"
 )
@@ -21,14 +22,16 @@ func main() {
 		param := os.Args
 		port = param[1]
 	} else {
-		fmt.Printf(color.Green + "NGTunnel " + config.Verzion + " - inform port number.\n\n" + color.Reset)
+		fmt.Printf(color.Green + "NGTunnel " + cfg.Verzion + " - inform port number.\n\n" + color.Reset)
 		fmt.Printf("Usage:\n")
 		fmt.Printf("   ngtunnel [port_number]\n\n")
 		os.Exit(0)
 	}
 
 	// Kill previous ngrok execution
-	utility.KillNgrok()
+	if err := utility.KillNgrok("ngrok"); err != nil {
+		log.Println("Error kill ngrok process")
+	}
 
 	// Verify if has curl installed
 	curlPath := utility.HasCurl()
