@@ -9,7 +9,7 @@ updates:
     time: "00:01"
     timezone: "America/Sao_Paulo"
   reviewers:
-    - "jidicula"
+    - "waldirborbajr"
   open-pull-requests-limit: 99
   commit-message:
     prefix: "workflows: "
