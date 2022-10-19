@@ -6,6 +6,7 @@ import (
 	"os"
 	"os/exec"
 	"path"
+	"path/filepath"
 	"strconv"
 	"strings"
 )
@@ -42,22 +43,25 @@ func KillProcess() error {
 	for _, xpid := range pids {
 		pidFileName := xpid.Name()
 
-		pkill, _ := strconv.Atoi(filenameWithoutExtension(pidFileName))
-		// proc, err := os.FindProcess(pkill)
-		// if err != nil {
-		// 	removePidFile(pidFileName)
-		// 	return err
-		// }
+		extension := strings.ToLower(filepath.Ext(pidFileName))
 
-		proc := os.Process{}
-		proc.Pid = pkill
+		if extension == ".pid" {
+			pkill, _ := strconv.Atoi(filenameWithoutExtension(pidFileName))
+			// proc, err := os.FindProcess(pkill)
+			// if err != nil {
+			// 	removePidFile(pidFileName)
+			// 	return err
+			// }
 
-		if err := proc.Kill(); err != nil {
+			proc := os.Process{}
+			proc.Pid = pkill
+
+			if err := proc.Kill(); err != nil {
+				removePidFile(pidFileName)
+				continue
+			}
 			removePidFile(pidFileName)
-			continue
 		}
-		removePidFile(pidFileName)
-
 	}
 	return nil
 }
