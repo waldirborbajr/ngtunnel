@@ -9,6 +9,7 @@ import (
 	"path/filepath"
 	"strconv"
 	"strings"
+	"time"
 )
 
 func getPath() string {
@@ -25,10 +26,10 @@ func StartProcess(procName string, protocol string, port string) error {
 		return err
 	}
 
+	time.Sleep(3 * time.Second)
 	if err := writePidFile(strconv.Itoa(cmd.Process.Pid)); err != nil {
 		return err
 	}
-
 	return nil
 
 }
@@ -47,11 +48,6 @@ func KillProcess() error {
 
 		if extension == ".pid" {
 			pkill, _ := strconv.Atoi(filenameWithoutExtension(pidFileName))
-			// proc, err := os.FindProcess(pkill)
-			// if err != nil {
-			// 	removePidFile(pidFileName)
-			// 	return err
-			// }
 
 			proc := os.Process{}
 			proc.Pid = pkill
