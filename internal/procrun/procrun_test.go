@@ -14,7 +14,7 @@ func TestStartProcess(t *testing.T) {
 			err.Error(),
 		)
 	} else {
-		t.Logf("Success !")
+		t.Logf("%s - Success ! ", t.Name())
 	}
 
 }
@@ -28,6 +28,37 @@ func TestKillProcess(t *testing.T) {
 			t.Name(),
 			err.Error())
 	} else {
-		t.Logf("Success !")
+		t.Logf("%s - Success !", t.Name())
 	}
+}
+
+func TestGetPath(t *testing.T) {
+	result := getPath()
+
+	if result != "" {
+		t.Logf("%s - Success !", t.Name())
+	} else {
+		t.Errorf("Failed! %s - expected nil, receieved %s",
+			t.Name(),
+			result)
+	}
+
+}
+
+func TestFilenameWithoutExtension(t *testing.T) {
+
+	input := "abc.pid"
+	result := "abc"
+
+	noExtension := filenameWithoutExtension(input)
+
+	if noExtension != result {
+		t.Errorf("Failed! %s - expected %s, receieved %s",
+			t.Name(),
+			input,
+			noExtension)
+	} else {
+		t.Logf("%s - Success !", t.Name())
+	}
+
 }
