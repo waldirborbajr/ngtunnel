@@ -3,6 +3,7 @@ package procrun
 import (
 	"fmt"
 	"io/ioutil"
+	"localhost/ngtunnel/pkg/util"
 	"os"
 	"os/exec"
 	"path"
@@ -11,12 +12,6 @@ import (
 	"strings"
 	"time"
 )
-
-func getPath() string {
-	curDir, _ := os.Getwd()
-
-	return curDir + "/"
-}
 
 // StartProcess start a background process
 func StartProcess(procName string, protocol string, port string) error {
@@ -38,7 +33,7 @@ func StartProcess(procName string, protocol string, port string) error {
 
 func KillProcess() error {
 
-	pids, err := ioutil.ReadDir(getPath())
+	pids, err := ioutil.ReadDir(util.GetPath())
 	if err != nil {
 		return err
 	}
@@ -77,5 +72,5 @@ func filenameWithoutExtension(fn string) string {
 }
 
 func writePidFile(pidFile string) error {
-	return ioutil.WriteFile(getPath()+pidFile+".pid", []byte(fmt.Sprintf(pidFile)), 0664)
+	return ioutil.WriteFile(util.GetPath()+pidFile+".pid", []byte(fmt.Sprintf(pidFile)), 0664)
 }
