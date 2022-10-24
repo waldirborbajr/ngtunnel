@@ -2,20 +2,15 @@ package procrun
 
 import (
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestStartProcess(t *testing.T) {
 
 	err := StartProcess("ngrok", "http", "9091")
 
-	if err != nil {
-		t.Errorf("Failed! %s - expected nil, receieved %s",
-			t.Name(),
-			err.Error(),
-		)
-	} else {
-		t.Logf("%s - Success ! ", t.Name())
-	}
+	assert.Nil(t, err)
 
 }
 
@@ -23,29 +18,19 @@ func TestKillProcess(t *testing.T) {
 
 	err := KillProcess()
 
-	if err != nil {
-		t.Errorf("Failed! %s - expected nil, receieved %s",
-			t.Name(),
-			err.Error())
-	} else {
-		t.Logf("%s - Success !", t.Name())
-	}
+	assert.Nil(t, err)
+
 }
 
 func TestFilenameWithoutExtension(t *testing.T) {
 
-	input := "abc.pid"
+	inputEq := "abc.pid"
+	inputNEq := "abc.pid"
 	result := "abc"
 
-	noExtension := filenameWithoutExtension(input)
+	noExtension := filenameWithoutExtension(inputEq)
 
-	if noExtension != result {
-		t.Errorf("Failed! %s - expected %s, receieved %s",
-			t.Name(),
-			input,
-			noExtension)
-	} else {
-		t.Logf("%s - Success !", t.Name())
-	}
+	assert.Equal(t, noExtension, result)
+	assert.NotEqual(t, noExtension, inputNEq)
 
 }
