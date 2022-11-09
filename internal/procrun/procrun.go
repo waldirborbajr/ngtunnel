@@ -3,7 +3,6 @@ package procrun
 import (
 	"fmt"
 	"io/ioutil"
-	"localhost/ngtunnel/pkg/util"
 	"os"
 	"os/exec"
 	"path"
@@ -11,6 +10,8 @@ import (
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/waldirborbajr/ngtunnel/internal/util"
 )
 
 // StartProcess start a background process

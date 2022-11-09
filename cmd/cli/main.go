@@ -5,14 +5,13 @@ import (
 	"log"
 	"os"
 
-	utility "localhost/ngtunnel/internal"
-	cfg "localhost/ngtunnel/pkg/config"
-
 	color "github.com/waldirborbajr/bp-colors"
+	"github.com/waldirborbajr/ngtunnel/internal/util"
+	"github.com/waldirborbajr/ngtunnel/internal/version"
 )
 
 func init() {
-	utility.CheckOS()
+	util.CheckOS()
 }
 
 func main() {
@@ -22,24 +21,24 @@ func main() {
 		param := os.Args
 		port = param[1]
 	} else {
-		fmt.Printf(color.Green + "NGTunnel " + cfg.Verzion + " - inform port number.\n\n" + color.Reset)
+		fmt.Printf(color.Green + "NGTunnel " + version.AppVersion() + " - inform port number.\n\n" + color.Reset)
 		fmt.Printf("Usage:\n")
 		fmt.Printf("   ngtunnel [port_number]\n\n")
 		os.Exit(0)
 	}
 
 	// Kill previous ngrok execution
-	if err := utility.KillNgrok("ngrok"); err != nil {
+	if err := util.KillNgrok("ngrok"); err != nil {
 		log.Println("Error kill ngrok process")
 	}
 
 	// Verify if has curl installed
-	curlPath := utility.HasCurl()
+	curlPath := util.HasCurl()
 
-	utility.HasNoHup()
+	util.HasNoHup()
 
-	utility.StartNGRok(port)
+	util.StartNGRok(port)
 
 	// Execute curl te grab public_url from ngrok
-	utility.GetngrokURL(curlPath)
+	util.GetngrokURL(curlPath)
 }

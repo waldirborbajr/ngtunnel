@@ -1,4 +1,4 @@
-module localhost/ngtunnel
+module github.com/waldirborbajr/ngtunnel
 
 go 1.19
 

@@ -1,4 +1,4 @@
-package utility
+package util
 
 import (
 	"fmt"
@@ -12,8 +12,7 @@ import (
 
 func KillNgrok(processName string) error {
 	argstr := `killall ` + processName
-	_, err := exec.Command("bash", "-c", argstr).Output()
-	if err != nil {
+	if _, err := exec.Command("bash", "-c", argstr).Output(); err != nil {
 		return err
 	}
 	return nil
@@ -36,8 +35,10 @@ func CheckOS() {
 }
 
 func HasCurl() string {
-	curlPath, err := exec.LookPath("curl")
-	if err != nil {
+	var curlPath string
+	var err error
+
+	if curlPath, err = exec.LookPath("curl"); err != nil {
 		fmt.Println("curl not found. Please install it first and run it again.")
 		os.Exit(1)
 	}
