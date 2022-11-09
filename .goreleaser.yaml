@@ -1,4 +1,4 @@
-project_name: kvstok
+project_name: ngtunnel
 
 before:
   hooks:
@@ -7,7 +7,7 @@ before:
 builds:
   - id: cli
     main: ./cmd/cli/main.go
-    binary: kvstok
+    binary: ngtunnel
 
     flags:
       - -trimpath
@@ -161,7 +161,7 @@ dockers:
     build_flag_templates:
       - '--pull'
       - '--label=io.artifacthub.package.maintainers=[{\"name\":\"Waldir Borba Junior (c)\",\"email\":\"wborbajr@gmail.com\"}]'
-      - '--label=org.opencontainers.image.description=KVStok - linux-amd64'
+      - '--label=org.opencontainers.image.description=ngtunnel - linux-amd64'
       - '--label=org.opencontainers.image.created={{ time "2006-01-02T15:04:05Z07:00" }}'
       - '--label=org.opencontainers.image.name={{ .ProjectName }}'
       - '--label=org.opencontainers.image.revision={{ .FullCommit }}'
@@ -182,7 +182,7 @@ dockers:
     build_flag_templates:
       - '--pull'
       - '--label=io.artifacthub.package.maintainers=[{\"name\":\"Waldir Borba Junior (c)\",\"email\":\"wborbajr@gmail.com\"}]'
-      - '--label=org.opencontainers.image.description=KVStok - from XML to MySQL - linux-arm64'
+      - '--label=org.opencontainers.image.description=ngtunnel - linux-arm64'
       - '--label=org.opencontainers.image.created={{ time "2006-01-02T15:04:05Z07:00" }}'
       - '--label=org.opencontainers.image.name={{ .ProjectName }}'
       - '--label=org.opencontainers.image.revision={{ .FullCommit }}'

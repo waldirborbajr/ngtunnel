@@ -18,13 +18,13 @@ linters:
     - typecheck
     - goimports
     - deadcode
-      # - gosec
-    # - golint
-    # - gocyclo
-#   - varnamelen
-#   - gochecknoglobals
-#   - exhaustruct
-#   - exhaustivestruct
+    - gosec
+    - golint
+    - gocyclo
+    - varnamelen
+    - gochecknoglobals
+    - exhaustruct
+    - exhaustivestruct
 
 issues:
   max-same-issues: 0
