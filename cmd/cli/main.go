@@ -40,6 +40,6 @@ func main() {
 
 	utility.StartNGRok(port)
 
-	// Execut curl te grab public_url from ngrok
+	// Execute curl te grab public_url from ngrok
 	utility.GetngrokURL(curlPath)
 }
