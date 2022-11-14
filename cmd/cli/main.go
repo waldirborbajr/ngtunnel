@@ -24,7 +24,7 @@ func main() {
 		fmt.Printf(color.Green + "NGTunnel " + version.AppVersion() + " - inform port number.\n\n" + color.Reset)
 		fmt.Printf("Usage:\n")
 		fmt.Printf("   ngtunnel [port_number]\n\n")
-		os.Exit(0)
+		os.Exit(1)
 	}
 
 	// Kill previous ngrok execution
