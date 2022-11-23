@@ -21,7 +21,7 @@ func main() {
 		param := os.Args
 		port = param[1]
 	} else {
-		fmt.Printf(color.Green + "NGTunnel " + version.AppVersion() + " - inform port number.\n\n" + color.Reset)
+		fmt.Printf(color.Red + "NGTunnel " + version.AppVersion() + " - inform port number.\n\n" + color.Reset)
 		fmt.Printf("Usage:\n")
 		fmt.Printf("   ngtunnel [port_number]\n\n")
 		os.Exit(1)
@@ -29,7 +29,7 @@ func main() {
 
 	// Kill previous ngrok execution
 	if err := util.KillNgrok("ngrok"); err != nil {
-		log.Println("Error kill ngrok process")
+		log.Println("Error killing ngrok process")
 	}
 
 	// Verify if has curl installed

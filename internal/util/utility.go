@@ -8,6 +8,9 @@ import (
 	"runtime"
 	"strings"
 	"time"
+
+	"github.com/fatih/color"
+	"github.com/go-git/go-git/v5/plumbing/color"
 )
 
 func KillNgrok(processName string) error {
@@ -39,7 +42,7 @@ func HasCurl() string {
 	var err error
 
 	if curlPath, err = exec.LookPath("curl"); err != nil {
-		fmt.Println("curl not found. Please install it first and run it again.")
+		fmt.Printf(color.Red + "curl not found. Please install it first and run it again.\n" + color.Reset)
 		os.Exit(1)
 	}
 	return curlPath
@@ -48,7 +51,7 @@ func HasCurl() string {
 func GetngrokURL(curlPath string) {
 	out, err := exec.Command(curlPath, "-s", "http://127.0.0.1:4040/api/tunnels").Output()
 	if err != nil {
-		fmt.Println("Error executing curl. Please verify if ngrok it is up and running.")
+		fmt.Println(color.Red + "Error executing curl. Please verify if ngrok it is up and running.\n" + color.Reset)
 		os.Exit(1)
 	}
 	output := out[:]
