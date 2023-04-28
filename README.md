@@ -1,8 +1,8 @@
-##
-Project archived. New one located at: https://github.com/waldirborbajr/ngtools
+# NGTunnel [Archived]
 
+The project has not be maintained. All users must migrate to its direct successor NGTools.
 
-# NGTunnel
+See https://github.com/waldirborbajr/ngtools
 
 [![CodeQL](https://github.com/waldirborbajr/ngtunnel/actions/workflows/codeql.yml/badge.svg)](https://github.com/waldirborbajr/ngtunnel/actions/workflows/codeql.yml)
 [![Release](https://github.com/waldirborbajr/ngtunnel/actions/workflows/goreleaser.yaml/badge.svg)](https://github.com/waldirborbajr/ngtunnel/actions/workflows/goreleaser.yaml)
